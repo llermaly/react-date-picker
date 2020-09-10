@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/react-date-picker.svg)](https://www.npmjs.com/package/react-date-picker) ![downloads](https://img.shields.io/npm/dt/react-date-picker.svg) ![build](https://img.shields.io/travis/wojtekmaj/react-date-picker/master.svg) ![dependencies](https://img.shields.io/david/wojtekmaj/react-date-picker.svg) ![dev dependencies](https://img.shields.io/david/dev/wojtekmaj/react-date-picker.svg) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![npm](https://img.shields.io/npm/v/react-date-picker.svg)](https://www.npmjs.com/package/react-date-picker) ![downloads](https://img.shields.io/npm/dt/react-date-picker.svg) [![build](https://travis-ci.com/wojtekmaj/react-date-picker.svg?branch=master)](https://travis-ci.com/wojtekmaj/react-date-picker) ![dependencies](https://img.shields.io/david/wojtekmaj/react-date-picker.svg) ![dev dependencies](https://img.shields.io/david/dev/wojtekmaj/react-date-picker.svg) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
 # React-Date-Picker
 
@@ -15,7 +15,7 @@ A date picker for your React app.
 
 ## Demo
 
-Minimal demo page is included in sample directory.
+A minimal demo page can be found in `sample` directory.
 
 [Online demo](http://projects.wojtekmaj.pl/react-date-picker/) is also available!
 
@@ -27,7 +27,7 @@ React-Date-Picker will play nicely with [React-Time-Picker](https://github.com/w
 
 ### Compatibility
 
-Your project needs to use React 16 or later. If you use older version of React, please refer to the table below to find suitable React-Date-Picker version.
+Your project needs to use React 16 or later. If you use an older version of React, please refer to the table below to find a suitable React-Date-Picker version.
 
 |React version|Newest available React-Date-Picker|
 |----|----|
@@ -49,26 +49,20 @@ Add React-Date-Picker to your project by executing `npm install react-date-picke
 Here's an example of basic usage:
 
 ```js
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import DatePicker from 'react-date-picker';
 
-class MyApp extends Component {
-  state = {
-    date: new Date(),
-  }
+function MyApp() {
+  const [value, onChange] = useState(new Date());
 
-  onChange = date => this.setState({ date })
-
-  render() {
-    return (
-      <div>
-        <DatePicker
-          onChange={this.onChange}
-          value={this.state.date}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <DatePicker
+        onChange={onChange}
+        value={value}
+      />
+    </div>
+  );
 }
 ```
 
@@ -94,6 +88,7 @@ Displays an input field complete with custom inputs, native input, and a calenda
 |className|Class name(s) that will be added along with `"react-date-picker"` to the main React-Date-Picker `<div>` element.|n/a|<ul><li>String: `"class1 class2"`</li><li>Array of strings: `["class1", "class2 class3"]`</li></ul>|
 |clearAriaLabel|`aria-label` for the clear button.|n/a|`"Clear value"`|
 |clearIcon|Content of the clear button. Setting the value explicitly to `null` will hide the icon.|(default icon)|<ul><li>String: `"Clear"`</li><li>React element: `<ClearIcon />`</li></ul>|
+|closeCalendar|Whether to close the calendar on value selection.|`true`|`false`|
 |dayAriaLabel|`aria-label` for the day input.|n/a|`"Day"`|
 |dayPlaceholder|`placeholder` for the day input.|`"--"`|`"dd"`|
 |disabled|Whether the date picker should be disabled.|`false`|`true`|

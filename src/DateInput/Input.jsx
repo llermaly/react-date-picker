@@ -45,10 +45,13 @@ function getSelectionString() {
 
 function makeOnKeyPress(maxLength) {
   return function onKeyPress(event) {
-    const { value } = event.target;
+    const { key, target: input } = event;
+    const { value } = input;
+
+    const isNumberKey = !isNaN(parseInt(key, 10));
     const selection = getSelectionString();
 
-    if (selection || value.length < maxLength) {
+    if (isNumberKey && (selection || value.length < maxLength)) {
       return;
     }
 
@@ -90,6 +93,7 @@ export default function Input({
         `${className}__${nameForClass || name}`,
         hasLeadingZero && `${className}__input--hasLeadingZero`,
       )}
+      data-input="true"
       disabled={disabled}
       max={max}
       min={min}
@@ -127,6 +131,7 @@ export default function Input({
 const isNumberOrString = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 Input.propTypes = {
+  ariaLabel: PropTypes.string,
   className: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   itemRef: PropTypes.func,
