@@ -70,6 +70,8 @@ export default function MonthSelect({
   );
 }
 
+const isNumberOrString = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
+
 MonthSelect.propTypes = {
   ariaLabel: PropTypes.string,
   className: PropTypes.string.isRequired,
@@ -84,6 +86,6 @@ MonthSelect.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   short: PropTypes.bool,
-  value: PropTypes.number,
-  year: PropTypes.number,
+  value: isNumberOrString,
+  year: isNumberOrString,
 };
